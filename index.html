@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<button id="btn" type="button">弹出</button>
+	<script>
+		function dialog(){
+			this.init();
+		}
+		dialog.prototype={
+			init:function(){
+				this.script();
+				this.creat();
+			},
+			script:function(){
+				this.btn=document.getElementById("btn");
+				this.body=document.body;
+			},
+			creat:function(){
+				var that=this;
+				this.btn.onclick=function(){
+					var box=document.createElement("div");
+					var xhz=document.createElement("div");
+					var title=document.createElement("h1");
+					var an1=document.createElement("button");
+					var an2=document.createElement("button");
+					box.className="box";
+					xhz.className="box1";
+
+					that.body.appendChild(box);
+					box.appendChild(xhz);
+					xhz.appendChild(title);
+					xhz.appendChild(an1);
+					xhz.appendChild(an2);
+
+					var text=document.createTextNode("弹框");
+					title.appendChild(text);
+					an1.innerHTML="确定";
+					an2.innerHTML="取消";
+					an1.className="btn1";
+					an2.className="btn2";
+					an1.onclick=function(){
+						that.body.removeChild(box)
+					}
+					an2.onclick=function(){
+						that.body.removeChild(box)
+					}
+				}
+			}
+		}
+		new dialog();
+	</script>
+</body>
+</html>
